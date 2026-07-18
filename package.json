@@ -1,0 +1,13 @@
+{
+  "name": "handcodeddevblog",
+  "private": true,
+  "packageManager": "pnpm@11.15.0",
+  "scripts": {
+    "dev:web": "pnpm --filter web dev",
+    "dev:api": "pnpm --filter api dev",
+    "build:web": "pnpm --filter web build",
+    "build:api": "pnpm --filter api build",
+    "start:api": "pnpm --filter api start",
+    "lint:web": "pnpm --filter web lint"
+  }
+}
