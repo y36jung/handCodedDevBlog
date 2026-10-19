@@ -1,0 +1,126 @@
+/* One outline colour per nesting depth. Outlines don't take up space, so layout is unchanged. */
+
+html[data-debug-borders] {
+    outline: 1px solid red;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * {
+    outline: 1px solid orange;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * {
+    outline: 1px solid gold;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * {
+    outline: 1px solid limegreen;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * {
+    outline: 1px solid cyan;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * {
+    outline: 1px solid dodgerblue;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * {
+    outline: 1px solid blueviolet;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * {
+    outline: 1px solid magenta;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * {
+    outline: 1px solid hotpink;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * {
+    outline: 1px solid sienna;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * {
+    outline: 1px solid teal;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * {
+    outline: 1px solid slategray;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * {
+    outline: 1px solid red;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * {
+    outline: 1px solid orange;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * {
+    outline: 1px solid gold;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * {
+    outline: 1px solid limegreen;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * {
+    outline: 1px solid cyan;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * {
+    outline: 1px solid dodgerblue;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * * {
+    outline: 1px solid blueviolet;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * * * {
+    outline: 1px solid magenta;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * * * * {
+    outline: 1px solid hotpink;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * * * * * {
+    outline: 1px solid sienna;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * * * * * * {
+    outline: 1px solid teal;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * * * * * * * {
+    outline: 1px solid slategray;
+    outline-offset: -1px;
+}
+
+html[data-debug-borders] * * * * * * * * * * * * * * * * * * * * * * * * {
+    outline: 1px solid red;
+    outline-offset: -1px;
+}

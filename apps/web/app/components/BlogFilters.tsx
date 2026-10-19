@@ -1,6 +1,9 @@
+'use client'
+
 import SearchFilter from "./SearchFilter"
 import TagFilter from "./TagFilter"
 import DateFilter from "./DateFilter"
+import FilterChips from "./FilterChips"
 
 
 export default function BlogFilters() {
@@ -8,8 +11,6 @@ export default function BlogFilters() {
         <div
             style={
                 {
-                    border: '2px solid green',
-                    height: '20%',
                     width: '95%',
                     flexDirection: 'column',
                     display: 'flex',
@@ -23,14 +24,16 @@ export default function BlogFilters() {
                 style={{
                     display: 'flex',
                     alignItems: 'center',
-                    border: '2px solid brown',
+                    gap: 8,
                     height: '70%'
                 }}
             >
                 <TagFilter/>
                 <DateFilter/>
             </div>
-            
+
+            <FilterChips/>
+
         </div>
     )
 }
