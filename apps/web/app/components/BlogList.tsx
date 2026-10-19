@@ -4,8 +4,8 @@ export default function BlogList() {
             style={
                 {
                 border: '2px solid orange',
-                height: '50vh',
-                width: '90vw'
+                height: '50%',
+                width: '95%'
                 }
             }
             className="list-of-blogs"
