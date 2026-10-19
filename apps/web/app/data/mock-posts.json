@@ -1,0 +1,762 @@
+[
+  {
+    "id": "261f40df-ef82-41a3-a28c-f7b1491e99f5",
+    "title": "Security pass: secrets and scopes",
+    "date": "2026-10-17",
+    "tags": [
+      "embeddings"
+    ],
+    "createdAt": "2026-10-17T09:53:42Z"
+  },
+  {
+    "id": "dab07929-4670-4312-8172-b2986d94dd6d",
+    "title": "Snapshot tests for prompts",
+    "date": "2026-10-16",
+    "tags": [
+      "bugs",
+      "design",
+      "drizzle",
+      "embeddings"
+    ],
+    "createdAt": "2026-10-16T10:23:59Z"
+  },
+  {
+    "id": "321c1744-ed28-49c1-b09c-0afb1ebb0794",
+    "title": "Unit testing chunkers",
+    "date": "2026-10-14",
+    "tags": [
+      "async",
+      "bugs",
+      "testing"
+    ],
+    "createdAt": "2026-10-14T18:53:25Z"
+  },
+  {
+    "id": "580dc5ab-6a8a-49cb-a405-6360ba28a679",
+    "title": "Cache invalidation for embeddings",
+    "date": "2026-10-13",
+    "tags": [
+      "bugs",
+      "decision"
+    ],
+    "createdAt": "2026-10-13T22:25:19Z"
+  },
+  {
+    "id": "065b8c35-64e2-4602-bc73-b6c9e04b0dce",
+    "title": "Speculative prefetch of chunks",
+    "date": "2026-10-11",
+    "tags": [
+      "cost",
+      "ui"
+    ],
+    "createdAt": "2026-10-11T15:31:57Z"
+  },
+  {
+    "id": "823d11ed-a1b5-41d6-91f9-bdfe9a762d54",
+    "title": "Latency budget for a chat turn",
+    "date": "2026-10-08",
+    "tags": [
+      "bugs",
+      "whisper"
+    ],
+    "createdAt": "2026-10-08T16:23:08Z"
+  },
+  {
+    "id": "ee379c65-f212-41e4-aaa3-556c35b7e448",
+    "title": "What I would do differently",
+    "date": "2026-10-07",
+    "tags": [
+      "sse"
+    ],
+    "createdAt": "2026-10-07T22:17:24Z"
+  },
+  {
+    "id": "757f1cba-4a22-4f39-847b-2c107912ef4a",
+    "title": "Notes on pagination strategy",
+    "date": "2026-10-05",
+    "tags": [
+      "caching",
+      "evals",
+      "ingestion"
+    ],
+    "createdAt": "2026-10-05T17:05:59Z"
+  },
+  {
+    "id": "774510ca-76f4-451e-8919-61a1843baee9",
+    "title": "Writing a mock API contract",
+    "date": "2026-10-03",
+    "tags": [
+      "embeddings",
+      "experiment",
+      "retrieval"
+    ],
+    "createdAt": "2026-10-03T23:18:45Z"
+  },
+  {
+    "id": "0f877ae3-7b7f-4c4b-8331-2ead222930ae",
+    "title": "Deploying the devlog to GitHub Pages",
+    "date": "2026-10-02",
+    "tags": [
+      "async",
+      "outlook"
+    ],
+    "createdAt": "2026-10-02T17:39:36Z"
+  },
+  {
+    "id": "998648e0-13d5-416f-b2c3-2444a48c1d5c",
+    "title": "Static site vs CMS for the devlog",
+    "date": "2026-09-30",
+    "tags": [
+      "decision",
+      "drizzle",
+      "experiment"
+    ],
+    "createdAt": "2026-09-30T09:39:40Z"
+  },
+  {
+    "id": "a661f62c-bd65-480c-bb11-85d9348922d7",
+    "title": "Tag design for the devlog",
+    "date": "2026-09-29",
+    "tags": [
+      "docker",
+      "sse"
+    ],
+    "createdAt": "2026-09-29T15:46:48Z"
+  },
+  {
+    "id": "794ec926-bc9e-48ea-bee8-062610e8ad01",
+    "title": "Search UI: filters and facets",
+    "date": "2026-09-28",
+    "tags": [
+      "bugs",
+      "embeddings",
+      "postgres",
+      "prompting"
+    ],
+    "createdAt": "2026-09-28T10:42:33Z"
+  },
+  {
+    "id": "880cb401-a050-4098-84d2-be09a0b55864",
+    "title": "Per-source rate limits",
+    "date": "2026-09-27",
+    "tags": [
+      "bugs",
+      "devlog",
+      "infra",
+      "outlook"
+    ],
+    "createdAt": "2026-09-27T22:35:03Z"
+  },
+  {
+    "id": "b6104b84-e490-4d49-8c47-93d795850e21",
+    "title": "Attachments as child documents",
+    "date": "2026-09-25",
+    "tags": [
+      "design",
+      "qdrant",
+      "sse"
+    ],
+    "createdAt": "2026-09-25T08:52:43Z"
+  },
+  {
+    "id": "a098d691-8352-4c85-a456-559cb70af5f2",
+    "title": "HTML email to clean text",
+    "date": "2026-09-24",
+    "tags": [
+      "design",
+      "outlook"
+    ],
+    "createdAt": "2026-09-24T09:52:53Z"
+  },
+  {
+    "id": "26433798-7e83-4904-bc17-3498b87e4e2b",
+    "title": "Email threading and quoted replies",
+    "date": "2026-09-23",
+    "tags": [
+      "docker",
+      "performance",
+      "qdrant"
+    ],
+    "createdAt": "2026-09-23T20:48:20Z"
+  },
+  {
+    "id": "f527b5c2-95e8-493e-95a0-a8ae3b996870",
+    "title": "Handling huge spreadsheets",
+    "date": "2026-09-18",
+    "tags": [
+      "drizzle"
+    ],
+    "createdAt": "2026-09-18T17:19:40Z"
+  },
+  {
+    "id": "963892a7-6646-4d28-a4d4-589c16fa1421",
+    "title": "Embedding drift after model change",
+    "date": "2026-09-17",
+    "tags": [
+      "embeddings",
+      "meta",
+      "retrieval"
+    ],
+    "createdAt": "2026-09-17T10:16:52Z"
+  },
+  {
+    "id": "1579da0a-61b2-480c-95d8-5e8d00460d69",
+    "title": "Re-indexing without downtime",
+    "date": "2026-09-10",
+    "tags": [
+      "bugs",
+      "cost"
+    ],
+    "createdAt": "2026-09-10T14:22:11Z"
+  },
+  {
+    "id": "52d31e1b-8c0d-4033-bc23-25a9f8fdd208",
+    "title": "Soft deletes and vector cleanup",
+    "date": "2026-09-09",
+    "tags": [
+      "postgres",
+      "qdrant"
+    ],
+    "createdAt": "2026-09-09T16:23:21Z"
+  },
+  {
+    "id": "759eb559-0b94-4f3a-8b05-e1aeb153d69c",
+    "title": "Index tuning in Postgres",
+    "date": "2026-09-07",
+    "tags": [
+      "bugs",
+      "qdrant",
+      "testing"
+    ],
+    "createdAt": "2026-09-07T17:38:15Z"
+  },
+  {
+    "id": "416e99b0-e13e-413e-bdaa-ea00a01d616f",
+    "title": "Tracing a slow query",
+    "date": "2026-09-06",
+    "tags": [
+      "caching",
+      "chunking",
+      "design",
+      "qdrant"
+    ],
+    "createdAt": "2026-09-06T12:00:04Z"
+  },
+  {
+    "id": "32d90dcd-57bb-4d97-bac4-da9afb813921",
+    "title": "Logging with request ids",
+    "date": "2026-09-05",
+    "tags": [
+      "api",
+      "evals",
+      "performance"
+    ],
+    "createdAt": "2026-09-05T17:44:13Z"
+  },
+  {
+    "id": "a81100a1-6ea3-40a1-a66d-58b5d1a4c01e",
+    "title": "Redis memory growth in the queue",
+    "date": "2026-09-03",
+    "tags": [
+      "embeddings",
+      "rag"
+    ],
+    "createdAt": "2026-09-03T22:06:42Z"
+  },
+  {
+    "id": "fa619774-8d11-4e37-8172-8a07bbab27f6",
+    "title": "Retry storms and backoff",
+    "date": "2026-09-02",
+    "tags": [
+      "caching",
+      "ocr"
+    ],
+    "createdAt": "2026-09-02T09:00:01Z"
+  },
+  {
+    "id": "4540f426-2d8a-48c0-ac12-7e938005ce74",
+    "title": "Token counting gotchas",
+    "date": "2026-08-30",
+    "tags": [
+      "evals",
+      "gmail"
+    ],
+    "createdAt": "2026-08-30T14:18:28Z"
+  },
+  {
+    "id": "eea7bb64-33a7-4568-ae5f-950c0ce5af69",
+    "title": "Context window budgeting",
+    "date": "2026-08-22",
+    "tags": [
+      "bugs",
+      "ui"
+    ],
+    "createdAt": "2026-08-22T11:10:16Z"
+  },
+  {
+    "id": "9f27f52c-4492-44d2-aa59-679aed3a32a8",
+    "title": "Reducing hallucinations with stricter context",
+    "date": "2026-08-20",
+    "tags": [
+      "postgres"
+    ],
+    "createdAt": "2026-08-20T18:35:26Z"
+  },
+  {
+    "id": "dcded204-43b3-4f66-910e-2cb638efbaeb",
+    "title": "Prompt template v2",
+    "date": "2026-08-16",
+    "tags": [
+      "ocr"
+    ],
+    "createdAt": "2026-08-16T10:38:54Z"
+  },
+  {
+    "id": "a26aa0ae-044f-4574-b037-afc644d82a53",
+    "title": "Chat history pagination",
+    "date": "2026-08-12",
+    "tags": [
+      "bugs",
+      "experiment",
+      "ui"
+    ],
+    "createdAt": "2026-08-12T21:57:04Z"
+  },
+  {
+    "id": "9212824c-83c8-4b28-ab4e-d2e3895e8b6b",
+    "title": "Moving from REST polling to SSE",
+    "date": "2026-08-11",
+    "tags": [
+      "docker",
+      "sse"
+    ],
+    "createdAt": "2026-08-11T16:25:09Z"
+  },
+  {
+    "id": "453bf491-2e7a-46e9-876c-603fe7e8f9f6",
+    "title": "Dark mode tokens for the UI",
+    "date": "2026-08-10",
+    "tags": [
+      "api",
+      "bugs"
+    ],
+    "createdAt": "2026-08-10T16:17:02Z"
+  },
+  {
+    "id": "c9d22950-eb25-48a1-bc2e-6a591ce3bc0c",
+    "title": "Profile modal and empty states",
+    "date": "2026-08-08",
+    "tags": [
+      "drizzle",
+      "rag",
+      "ui"
+    ],
+    "createdAt": "2026-08-08T17:32:04Z"
+  },
+  {
+    "id": "756b7289-8dd6-4cb9-9685-d62404fcd555",
+    "title": "Login screen design pass",
+    "date": "2026-08-03",
+    "tags": [
+      "caching",
+      "drizzle",
+      "infra"
+    ],
+    "createdAt": "2026-08-03T10:46:23Z"
+  },
+  {
+    "id": "b4d19ec1-2955-46f0-b945-336bd51b1815",
+    "title": "Env validation fails fast",
+    "date": "2026-08-02",
+    "tags": [
+      "bugs",
+      "whisper"
+    ],
+    "createdAt": "2026-08-02T23:10:42Z"
+  },
+  {
+    "id": "77bd891f-f7b1-43df-a323-1e1ee2015522",
+    "title": "Drizzle migrations in CI",
+    "date": "2026-08-01",
+    "tags": [
+      "outlook",
+      "security"
+    ],
+    "createdAt": "2026-08-01T19:09:16Z"
+  },
+  {
+    "id": "c6e50df2-e5a3-463e-9f52-5265c8b007ee",
+    "title": "Webhook signature verification",
+    "date": "2026-07-31",
+    "tags": [
+      "async",
+      "postgres",
+      "retrieval"
+    ],
+    "createdAt": "2026-07-31T14:42:19Z"
+  },
+  {
+    "id": "6471fde4-1f22-4dd0-aaa8-b9e0231b3e14",
+    "title": "Google Drive incremental sync",
+    "date": "2026-07-30",
+    "tags": [
+      "performance",
+      "prompting"
+    ],
+    "createdAt": "2026-07-30T14:53:28Z"
+  },
+  {
+    "id": "e040015c-e064-4114-85f1-115bb2fff17b",
+    "title": "Cost per ingested page",
+    "date": "2026-07-29",
+    "tags": [
+      "embeddings",
+      "qdrant",
+      "rag"
+    ],
+    "createdAt": "2026-07-29T23:32:15Z"
+  },
+  {
+    "id": "9b2bd6c0-816b-4e06-b92e-23399ccea098",
+    "title": "Fixing flaky eval runs",
+    "date": "2026-07-28",
+    "tags": [
+      "bugs",
+      "performance",
+      "postgres"
+    ],
+    "createdAt": "2026-07-28T10:28:20Z"
+  },
+  {
+    "id": "1905d591-c5b2-475a-8acd-8be146e40990",
+    "title": "First recall@5 numbers",
+    "date": "2026-07-23",
+    "tags": [
+      "cost",
+      "decision",
+      "meta"
+    ],
+    "createdAt": "2026-07-23T09:15:12Z"
+  },
+  {
+    "id": "87ddaeb7-84b2-4054-aead-44b0537390e5",
+    "title": "Building the eval harness",
+    "date": "2026-07-21",
+    "tags": [
+      "decision",
+      "qdrant"
+    ],
+    "createdAt": "2026-07-21T11:35:03Z"
+  },
+  {
+    "id": "cc966f46-c6aa-4d55-8101-b8119bca3cb7",
+    "title": "Query rewriting experiment",
+    "date": "2026-07-19",
+    "tags": [
+      "bugs",
+      "rag"
+    ],
+    "createdAt": "2026-07-19T22:49:11Z"
+  },
+  {
+    "id": "8825ae56-2179-437d-806c-10b5e0cfab4c",
+    "title": "Why retrieval missed the obvious answer",
+    "date": "2026-07-18",
+    "tags": [
+      "bullmq",
+      "infra",
+      "postgres",
+      "redis"
+    ],
+    "createdAt": "2026-07-18T21:52:58Z"
+  },
+  {
+    "id": "0f977044-218e-4b7b-958d-cdb46b446806",
+    "title": "OCR for scanned PDFs with GPT-4o Vision",
+    "date": "2026-07-17",
+    "tags": [
+      "rag",
+      "whisper"
+    ],
+    "createdAt": "2026-07-17T18:16:34Z"
+  },
+  {
+    "id": "3678bc8d-4078-4f0a-872a-98d23606defc",
+    "title": "Dedup by content hash",
+    "date": "2026-07-14",
+    "tags": [
+      "outlook",
+      "postgres",
+      "rag",
+      "security"
+    ],
+    "createdAt": "2026-07-14T14:52:55Z"
+  },
+  {
+    "id": "03a56cc1-057a-40b2-a188-287e8c5c715f",
+    "title": "Markdown vs plain text chunking",
+    "date": "2026-07-13",
+    "tags": [
+      "chunking",
+      "qdrant",
+      "retrieval",
+      "streaming"
+    ],
+    "createdAt": "2026-07-13T19:09:35Z"
+  },
+  {
+    "id": "77216e9e-e7a4-4309-973f-798626b1cffc",
+    "title": "Citation formatting in answers",
+    "date": "2026-07-10",
+    "tags": [
+      "design"
+    ],
+    "createdAt": "2026-07-10T13:08:01Z"
+  },
+  {
+    "id": "be4c5ce6-66c1-494e-b691-b06f6555abfe",
+    "title": "Rate limiting OpenAI calls",
+    "date": "2026-07-07",
+    "tags": [
+      "outlook",
+      "performance",
+      "postgres"
+    ],
+    "createdAt": "2026-07-07T10:51:46Z"
+  },
+  {
+    "id": "330698a1-c009-4492-b624-6771c8450070",
+    "title": "Docker compose for local Qdrant and Redis",
+    "date": "2026-07-06",
+    "tags": [
+      "testing"
+    ],
+    "createdAt": "2026-07-06T11:58:24Z"
+  },
+  {
+    "id": "a4a45eff-ccb5-43d9-9810-d60ea72991b9",
+    "title": "Setting up Vitest for the worker",
+    "date": "2026-06-30",
+    "tags": [
+      "gmail",
+      "qdrant"
+    ],
+    "createdAt": "2026-06-30T08:30:58Z"
+  },
+  {
+    "id": "325b55dd-7857-4976-ba12-917c1a26f889",
+    "title": "Hybrid search: BM25 plus vectors",
+    "date": "2026-06-29",
+    "tags": [
+      "design",
+      "infra",
+      "ocr"
+    ],
+    "createdAt": "2026-06-29T19:05:14Z"
+  },
+  {
+    "id": "5822cb77-f4de-4c08-9aea-6429b1491e24",
+    "title": "Debugging a stuck ingestion job",
+    "date": "2026-06-28",
+    "tags": [
+      "pdf"
+    ],
+    "createdAt": "2026-06-28T23:16:12Z"
+  },
+  {
+    "id": "076b3e36-bb23-43f5-9b06-258e7e26f36a",
+    "title": "Fastify schema validation with Zod",
+    "date": "2026-06-27",
+    "tags": [
+      "ocr",
+      "sse"
+    ],
+    "createdAt": "2026-06-27T15:12:33Z"
+  },
+  {
+    "id": "fc241d0b-c9d4-48b1-8fbf-33609cfc8652",
+    "title": "Overlapping chunks: worth the storage?",
+    "date": "2026-06-21",
+    "tags": [
+      "evals",
+      "meta"
+    ],
+    "createdAt": "2026-06-21T18:40:14Z"
+  },
+  {
+    "id": "c59db916-5b0e-476f-aac3-4446e883a1d4",
+    "title": "Handling Outlook token expiry",
+    "date": "2026-06-18",
+    "tags": [
+      "chunking",
+      "s3"
+    ],
+    "createdAt": "2026-06-18T16:33:23Z"
+  },
+  {
+    "id": "87322e25-c215-482a-86ec-41adea057543",
+    "title": "Presigned S3 uploads, step by step",
+    "date": "2026-06-16",
+    "tags": [
+      "ci",
+      "evals"
+    ],
+    "createdAt": "2026-06-16T12:44:34Z"
+  },
+  {
+    "id": "05e999f3-842e-4fc2-a954-0a6eb12aa1f6",
+    "title": "Designing the documents schema",
+    "date": "2026-06-14",
+    "tags": [
+      "async",
+      "qdrant",
+      "whisper"
+    ],
+    "createdAt": "2026-06-14T16:30:53Z"
+  },
+  {
+    "id": "7afb2c68-774b-45d7-ba52-9ba3fe3bfada",
+    "title": "Postgres connection pool exhaustion",
+    "date": "2026-06-13",
+    "tags": [
+      "decision",
+      "oauth"
+    ],
+    "createdAt": "2026-06-13T11:54:31Z"
+  },
+  {
+    "id": "f4998d7c-4093-46de-a268-aa872607679d",
+    "title": "Switching to text-embedding-3-large",
+    "date": "2026-06-12",
+    "tags": [
+      "bugs",
+      "gmail"
+    ],
+    "createdAt": "2026-06-12T14:39:24Z"
+  },
+  {
+    "id": "19f9919c-895f-47b3-a6b9-4c7f9118bb16",
+    "title": "Why my PDF text extraction was empty",
+    "date": "2026-06-08",
+    "tags": [
+      "infra"
+    ],
+    "createdAt": "2026-06-08T09:06:00Z"
+  },
+  {
+    "id": "298cb3a5-70cc-4c31-b571-810afc132d0d",
+    "title": "Streaming chat responses over SSE",
+    "date": "2026-06-07",
+    "tags": [
+      "bugs",
+      "drizzle",
+      "outlook"
+    ],
+    "createdAt": "2026-06-07T09:12:04Z"
+  },
+  {
+    "id": "ae3a2b7f-dfe0-4893-b3ae-d0b6c7ac1491",
+    "title": "Qdrant payload indexes and filter speed",
+    "date": "2026-06-05",
+    "tags": [
+      "ci",
+      "design",
+      "retrieval"
+    ],
+    "createdAt": "2026-06-05T22:57:55Z"
+  },
+  {
+    "id": "b0c4312d-2020-4626-b3fe-39c0519088f5",
+    "title": "Welcome to the devlog",
+    "date": "2026-06-04",
+    "tags": [
+      "bugs",
+      "drizzle"
+    ],
+    "createdAt": "2026-06-04T19:39:36Z"
+  },
+  {
+    "id": "43435cc5-2eae-45cf-96d0-cc5fd4c28c2e",
+    "title": "Audio ingestion with Whisper",
+    "date": "2026-06-03",
+    "tags": [
+      "devlog",
+      "embeddings",
+      "qdrant"
+    ],
+    "createdAt": "2026-06-03T15:00:31Z"
+  },
+  {
+    "id": "e25a7605-aec6-4024-9bd8-6d40fc891b4a",
+    "title": "First UI mockups for Memory Bank",
+    "date": "2026-06-02",
+    "tags": [
+      "cost",
+      "evals",
+      "sse"
+    ],
+    "createdAt": "2026-06-02T16:45:26Z"
+  },
+  {
+    "id": "72fdf202-2a96-4b1a-94a0-f9e77f1b103c",
+    "title": "Trying a reranker before GPT-4o",
+    "date": "2026-05-31",
+    "tags": [
+      "bugs",
+      "embeddings"
+    ],
+    "createdAt": "2026-05-31T20:58:55Z"
+  },
+  {
+    "id": "37dc76fb-0f17-4300-be62-aa0a1df9fd78",
+    "title": "Gmail OAuth: refresh token gotchas",
+    "date": "2026-05-30",
+    "tags": [
+      "security"
+    ],
+    "createdAt": "2026-05-30T19:10:39Z"
+  },
+  {
+    "id": "58d5563d-ab2c-431e-a315-128862c33a4f",
+    "title": "BullMQ retries and idempotent ingestion",
+    "date": "2026-05-29",
+    "tags": [
+      "bugs",
+      "outlook",
+      "retrieval",
+      "ui"
+    ],
+    "createdAt": "2026-05-29T22:18:45Z"
+  },
+  {
+    "id": "795e8229-451a-4d81-b1d6-9ed617f5e837",
+    "title": "Chunk size tuning notes",
+    "date": "2026-05-28",
+    "tags": [
+      "infra",
+      "rag"
+    ],
+    "createdAt": "2026-05-28T22:04:53Z"
+  },
+  {
+    "id": "d17f9aca-e01f-4057-8a02-135e92b1d3f2",
+    "title": "Why I switched from Prisma to Drizzle",
+    "date": "2026-05-27",
+    "tags": [
+      "drizzle",
+      "security"
+    ],
+    "createdAt": "2026-05-27T10:48:35Z"
+  },
+  {
+    "id": "5790f82e-c1d3-4cff-aa3a-f4d46b0a18e8",
+    "title": "Fixed the embedding bug",
+    "date": "2026-05-26",
+    "tags": [
+      "infra",
+      "postgres",
+      "rag"
+    ],
+    "createdAt": "2026-05-26T10:07:32Z"
+  }
+]

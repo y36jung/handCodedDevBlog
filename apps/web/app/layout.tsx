@@ -1,4 +1,7 @@
-import { MantineProvider } from "@mantine/core";
+import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
+import { ColorSchemeScript, MantineProvider, mantineHtmlProps } from "@mantine/core";
+import DebugBorders from "./components/DebugBorders";
 
 export default function RootLayout({
   children,
@@ -6,25 +9,29 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html style={{
+    <html {...mantineHtmlProps} style={{
       display: 'flex',
       justifyContent: 'center',
       background: 'black',
-      border: '1px solid red',
       minHeight: '100vh',
     }}>
+      <head>
+        <ColorSchemeScript defaultColorScheme="auto" />
+      </head>
       <body style={{
-        border: '1px solid pink',
         display: 'flex',
+        background: 'inherit',
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '2%',
-        margin: '2% 2% 2% 2%'
+        gap: '2vh',
+        margin: '2vh 2vw 2vh 2vw'
       }}>
-        <MantineProvider>
-          {children}
+        <MantineProvider defaultColorScheme="auto">
+          <DebugBorders enabled={true}>
+            {children}
+          </DebugBorders>
         </MantineProvider>
       </body>
     </html>
