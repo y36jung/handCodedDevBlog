@@ -8,11 +8,19 @@ All reports are written to `apps/web/perf-reports/`, which git ignores.
 
 | Script | What it measures | Output |
 | --- | --- | --- |
+| `pnpm perf:doctor` | **React Doctor** static code analysis. It scans the React source for problems with state and effects, performance anti-patterns (e.g. array lookups inside loops), accessibility, bugs and security, and gives a **0–100 health score**. It doesn't need a build. | `perf-reports/react-doctor-<timestamp>.txt` (score + findings) and `perf-reports/react-doctor-<timestamp>/` (`diagnostics.json` + one file per rule) |
 | `pnpm perf:build-size` | Runs a production `next build` and saves the terminal output, then appends a **First Load JS** table for each route (uncompressed and gzip). This is how much JavaScript a visitor downloads on first visit to that route. | `perf-reports/build-output-<timestamp>.txt` |
 | `pnpm perf:bundle` | Opens the Next.js **Bundle Analyzer** (Turbopack's built-in `next experimental-analyze`) at http://localhost:4000. It shows which modules make up each route's JavaScript, which helps you spot large dependencies. | Interactive only |
 | `pnpm perf:bundle:save` | Same analysis, written to disk without the UI. It's copied out of `.next` because the next build would delete it. | `perf-reports/bundle-analysis-<timestamp>/` |
 | `pnpm perf:lighthouse` | **Lighthouse CI**. Builds and starts the production server on port 3100, then audits each page 5 times (desktop preset). It reports the Performance score plus LCP, CLS, TBT, FCP and Speed Index. | `perf-reports/lighthouse/` (HTML + JSON per run, and `manifest.json`) |
-| `pnpm perf:all` | Runs build-size, then bundle:save, then lighthouse. | All of the above |
+| `pnpm perf:all` | Runs doctor, then build-size, then bundle:save, then lighthouse. | All of the above |
+
+**About React Doctor.**
+- It measures code, not speed. A higher score means fewer known problem patterns, which is a useful signal but not a measured speedup. Confirm real gains with Lighthouse, Web Vitals and the profilers.
+- The score is the number to compare. Finding counts per category are also good before/after numbers.
+- The score comes from React Doctor's hosted score API. Each run sends a scan summary and anonymous usage data, and prints a share link. For a fully local run, add `--no-score` to the arguments in `apps/web/scripts/save-react-doctor.mjs`. You won't get a score, but the findings are the same.
+- `apps/web/doctor.config.json` keeps `.next/` and `perf-reports/` out of the scan. They contain built JavaScript, which would produce false findings.
+- The version is pinned (`react-doctor` 0.9.18) because new versions add rules, which would change the score for reasons unrelated to your code.
 
 Lighthouse audits these pages, as set in `apps/web/lighthouserc.json`:
 - `/`: the home page with the full post list
@@ -67,6 +75,7 @@ Then rename or move the baseline reports, for example to `apps/web/perf-reports/
 - **Use medians, not single runs.** Lighthouse runs each page 5 times for this reason. Compare the representative (median) runs.
 - **Change one thing at a time** where you can, so you know which change caused the difference.
 - **Same Lighthouse preset** (desktop or mobile) for the before and after runs.
+- **Same React Doctor version** for the before and after runs. Don't upgrade `react-doctor` between them.
 
 ## Calculating improvement
 

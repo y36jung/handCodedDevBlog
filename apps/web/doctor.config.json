@@ -1,0 +1,7 @@
+{
+  "$schema": "https://react.doctor/schema/config.json",
+  // Perf tooling: keep build output and saved reports (which contain built JS chunks) out of the scan
+  "ignore": {
+    "files": ["perf-reports/**", ".next/**", ".lighthouseci/**"]
+  }
+}
