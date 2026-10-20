@@ -27,7 +27,7 @@ Lighthouse audits these pages, as set in `apps/web/lighthouserc.json`:
 - `/?tags=embeddings`: the home page with a filter applied
 - `/posts/261f40df-…`: a post detail page
 
-**Reading Lighthouse results.** `perf-reports/lighthouse/manifest.json` lists every run. The entry with `"isRepresentativeRun": true` is the **median** run for that URL, so use that one. Open the matching `.report.html` in a browser for the full report.
+**Reading Lighthouse results.** `perf-reports/lighthouse/manifest.json` lists the 15 runs from the **latest** Lighthouse run. Each entry has the URL, the category scores and the paths to its report files. The entry with `"isRepresentativeRun": true` is the **median** run for that URL, so use that one. Open the matching `.report.html` in a browser for the full report; it's easier to read than the `.json`.
 
 **Switching Lighthouse to mobile.** In `apps/web/lighthouserc.json`, delete the `"preset": "desktop"` line under `collect.settings`. Lighthouse's default is mobile emulation (a slower phone CPU and network). Mobile and desktop scores can't be compared with each other, so pick one and use it for both the before and after runs.
 
@@ -52,6 +52,23 @@ The production build turns off profiling. Use `pnpm dev:web`, or build with `nex
 3. To profile page load, click the reload-and-record button (circular arrow). To profile an interaction, click record, interact, then stop.
 4. Look at the **Main** track for long tasks (red corners, over 50 ms). Look at the LCP and INP markers in the timings track, and use the "Bottom-Up" tab to see which functions took the most time.
 
+## Where to find results
+
+Everything is saved under **`apps/web/perf-reports/`**. Git ignores this folder, so it only exists on your machine.
+
+| Tool | Location | What to open |
+| --- | --- | --- |
+| React Doctor | `react-doctor-<timestamp>.txt` and `react-doctor-<timestamp>/` | The `.txt` for the score and findings. `diagnostics.json` in the folder has every finding as data. |
+| Build size | `build-output-<timestamp>.txt` | The First Load JS table at the bottom. |
+| Bundle analyzer | `bundle-analysis-<timestamp>/` | `analyze.txt` and the other `.txt` files. For the visual explorer, run `pnpm perf:bundle` and open http://localhost:4000. |
+| Lighthouse | `lighthouse/` | `manifest.json` first, then the `.report.html` of the median run for each URL. |
+| Web Vitals | Not saved | The browser console (`[Web Vitals] …` lines). Copy the numbers down yourself. |
+| React Scan, React DevTools Profiler, Chrome Performance panel | Not saved | Shown live in the browser. Chrome and React DevTools can export a profile to a file if you want to keep one. |
+
+**Things to watch out for:**
+- **The `lighthouse/` folder keeps every run.** New reports are added next to old ones, and the file names don't say which page each report is for. Only `manifest.json` tells you, and it only covers the latest run. Clear or move the folder between measurements (see below).
+- **Lighthouse file names use UTC time**, so they can differ from your local clock. For example, `localhost--2026_10_20_15_38_43` is 16:38 in UTC+1. The other files use your local time.
+
 ## Measuring the baseline
 
 The git tag `perf-baseline` marks the original app code with this tooling already added. To measure it:
@@ -60,13 +77,16 @@ The git tag `perf-baseline` marks the original app code with this tooling alread
 git stash                  # only if you have uncommitted work
 git checkout perf-baseline
 pnpm install
+rm -rf apps/web/perf-reports   # start from an empty reports folder
 pnpm perf:all
+mkdir -p apps/web/perf-reports/baseline
+mv apps/web/perf-reports/{lighthouse,*-20*} apps/web/perf-reports/baseline/
 git checkout <your-branch> # e.g. slight-format-fix
 pnpm install
 git stash pop              # only if you stashed
 ```
 
-Then rename or move the baseline reports, for example to `apps/web/perf-reports/baseline/`, so the next run doesn't mix with them. Run `pnpm perf:all` on your optimized branch and compare the two.
+`perf-reports/` is git-ignored, so the baseline folder stays put when you switch branches. After optimizing, run `pnpm perf:all` on your branch and move those results the same way, into `apps/web/perf-reports/after/` (or a name for each attempt, like `after-memo-fix/`). Then compare the files in `baseline/` with those in `after/`.
 
 ## Rules for fair comparisons
 
