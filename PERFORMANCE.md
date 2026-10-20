@@ -109,3 +109,59 @@ improvement % = (before − after) ÷ before × 100
 
 For example, if LCP went from 1200 ms to 900 ms: (1200 − 900) ÷ 1200 × 100 = **25% faster**.
 This works for "lower is better" metrics (LCP, TBT, CLS, JS size). For the Lighthouse score, where higher is better, report the point difference instead (for example, 78 → 92 is +14 points).
+
+## Targets
+
+What "excellent" looks like for each metric in the report. Lighthouse thresholds come from Lighthouse 12's **desktop** scoring (the preset used here). "Good" is roughly where a metric scores 90+ out of 100. Mobile thresholds are shown where they differ.
+
+### React Doctor
+
+| Metric | Excellent | Acceptable |
+| --- | --- | --- |
+| Health score | 90–100 | 75–89 |
+| Errors | 0 | 0 (any error is a likely bug) |
+| Warnings / issues per category | 0 | A few low-priority ones you've decided not to fix |
+
+### Build size (First Load JS, per route)
+
+| Metric | Excellent | Acceptable |
+| --- | --- | --- |
+| Gzip | Within ~20–30 kB of the framework floor | Under ~170 kB |
+| Uncompressed | Under ~450 kB | Under ~600 kB |
+| Route type | Static wherever the content allows it | Dynamic only when it has to be |
+
+The **framework floor** is what Next.js and React cost on an empty page. In this app it's the `/_not-found` route, about 143 kB gzip. Everything above it is your own code and libraries. For a blog, excellent means content pages sit close to the floor, ideally under about 170 kB.
+
+### Bundle composition (client JS per route)
+
+| Metric | Excellent |
+| --- | --- |
+| Route total | Only slightly above the `/_not-found` total |
+| `next` | Fixed (~204 kB). You can't shrink it; it's the floor. |
+| UI library (`@mantine/*`, `@floating-ui/*`) | Under ~30 kB on a page, and only the components that page uses |
+| Single feature library (e.g. `@mantine/dates`, `dayjs`) | Loaded only on pages or interactions that need it |
+| `(app code)` | Under ~20 kB per route for a blog |
+
+### Lighthouse category scores (per page)
+
+| Metric | Excellent | Good |
+| --- | --- | --- |
+| Performance | 100 | 90+ |
+| Accessibility | 100 | 90+ |
+| Best Practices | 100 | 90+ |
+| SEO | 100 | 90+ |
+
+### Lighthouse timings (median)
+
+| Metric | Excellent | Good (desktop) | Good (mobile preset) |
+| --- | --- | --- | --- |
+| First Contentful Paint (FCP) | under ~0.5 s | ≤ 0.9 s | ≤ 1.8 s |
+| Largest Contentful Paint (LCP) | under ~0.8 s | ≤ 1.2 s | ≤ 2.5 s |
+| Total Blocking Time (TBT) | 0–50 ms | ≤ 150 ms | ≤ 200 ms |
+| Cumulative Layout Shift (CLS) | 0 (nothing moves) | ≤ 0.1 | ≤ 0.1 |
+| Speed Index | under ~0.8 s | ≤ 1.3 s | ≤ 3.4 s |
+| Server response time (TTFB) | under ~100 ms | ≤ 600 ms (the Lighthouse audit's pass line) | ≤ 600 ms |
+
+Google's real-user Core Web Vitals use the same "good" lines regardless of device: LCP ≤ 2.5 s, CLS ≤ 0.1, INP ≤ 200 ms. INP is what the Web Vitals console logger reports after you interact with the page.
+
+**Note:** desktop runs on localhost are very forgiving: there's no network delay, a fast CPU, and TTFB of a few milliseconds. Timing metrics can look excellent while the JavaScript size is only average. To make differences in the timing metrics show up, switch to the mobile preset (see "Switching Lighthouse to mobile") and use it for both the baseline and later runs.
