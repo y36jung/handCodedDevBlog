@@ -13,10 +13,6 @@
       "settings": {
         "preset": "desktop"
       }
-    },
-    "upload": {
-      "target": "filesystem",
-      "outputDir": "./perf-reports/lighthouse"
     }
   }
 }

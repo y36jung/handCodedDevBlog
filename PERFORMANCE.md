@@ -2,24 +2,29 @@
 
 This guide covers how to measure the blog's frontend (`apps/web`) before and after optimizing it.
 Run every command from the repo root. The root `perf:*` scripts forward to `apps/web`.
-All reports are written to `apps/web/perf-reports/`, which git ignores.
+**Every measurement produces exactly one file:** a Markdown report in `apps/web/perf-reports/`, which git ignores. Nothing else is saved.
 
 ## The tools
 
-| Script | What it measures | Output |
+Each command writes a report with only its own section. `perf:all` writes one report with every section.
+
+| Script | What it measures | Section in the report |
 | --- | --- | --- |
-| `pnpm perf:doctor` | **React Doctor** static code analysis. It scans the React source for problems with state and effects, performance anti-patterns (e.g. array lookups inside loops), accessibility, bugs and security, and gives a **0–100 health score**. It doesn't need a build. | `perf-reports/react-doctor-<timestamp>.txt` (score + findings) and `perf-reports/react-doctor-<timestamp>/` (`diagnostics.json` + one file per rule) |
-| `pnpm perf:build-size` | Runs a production `next build` and saves the terminal output, then appends a **First Load JS** table for each route (uncompressed and gzip). This is how much JavaScript a visitor downloads on first visit to that route. | `perf-reports/build-output-<timestamp>.txt` |
-| `pnpm perf:bundle` | Opens the Next.js **Bundle Analyzer** (Turbopack's built-in `next experimental-analyze`) at http://localhost:4000. It shows which modules make up each route's JavaScript, which helps you spot large dependencies. | Interactive only |
-| `pnpm perf:bundle:save` | Same analysis, written to disk without the UI. It's copied out of `.next` because the next build would delete it. | `perf-reports/bundle-analysis-<timestamp>/` |
-| `pnpm perf:lighthouse` | **Lighthouse CI**. Builds and starts the production server on port 3100, then audits each page 5 times (desktop preset). It reports the Performance score plus LCP, CLS, TBT, FCP and Speed Index. | `perf-reports/lighthouse/` (HTML + JSON per run, and `manifest.json`) |
-| `pnpm perf:all` | Runs doctor, then build-size, then bundle:save, then lighthouse. | All of the above |
+| `pnpm perf:doctor` | **React Doctor** static code analysis. It scans the React source for problems with state and effects, performance anti-patterns (e.g. array lookups inside loops), accessibility, bugs and security, and gives a **0–100 health score**. It doesn't need a build. | Score, issues per category, and every finding with its file and line |
+| `pnpm perf:build-size` | Runs a production `next build` and measures **First Load JS** for each route: how much JavaScript a visitor downloads on their first visit to that route. | Gzip and uncompressed size per route, plus whether each route is static or dynamic |
+| `pnpm perf:bundle:save` | Runs the Next.js **Bundle Analyzer** (Turbopack's built-in `next experimental-analyze`) and adds up each route's browser JavaScript by npm package, which helps you spot large dependencies. | The 8 largest packages per route, with size and share |
+| `pnpm perf:lighthouse` | **Lighthouse CI**. Builds and starts the production server on port 3100, then audits each page 5 times (desktop preset). | Median scores and metrics (FCP, LCP, TBT, CLS, Speed Index, TTFB) for each page, plus its top failing performance audits |
+| `pnpm perf:all` | All four of the above, in that order. If one tool fails, the others still run and the report shows the failure. | All sections |
+| `pnpm perf:bundle` | Opens the Bundle Analyzer's interactive view at http://localhost:4000 for exploring the module tree in detail. | Not saved, view only |
+| `pnpm perf:compare <before> <after>` | Prints a before/after table of every metric from two reports in the terminal. | Not saved, terminal only |
+
+**Naming a report.** Add a label to any command to name the file, e.g. `pnpm perf:all baseline` writes `perf-reports/baseline.md`. Without a label, the file is `perf-reports/perf-<timestamp>.md`. A label can only contain letters, digits, `.`, `_` and `-`. Running the same label again overwrites that report.
 
 **About React Doctor.**
 - It measures code, not speed. A higher score means fewer known problem patterns, which is a useful signal but not a measured speedup. Confirm real gains with Lighthouse, Web Vitals and the profilers.
 - The score is the number to compare. Finding counts per category are also good before/after numbers.
-- The score comes from React Doctor's hosted score API. Each run sends a scan summary and anonymous usage data, and prints a share link. For a fully local run, add `--no-score` to the arguments in `apps/web/scripts/save-react-doctor.mjs`. You won't get a score, but the findings are the same.
-- `apps/web/doctor.config.json` keeps `.next/` and `perf-reports/` out of the scan. They contain built JavaScript, which would produce false findings.
+- The score comes from React Doctor's hosted score API. Each run sends a scan summary and anonymous usage data, and prints a share link. For a fully local run, add `"--no-score"` to the React Doctor arguments in `apps/web/scripts/perf.mjs`. The report then shows the score as n/a, but the findings are the same.
+- `apps/web/doctor.config.json` keeps `.next/` out of the scan. It contains built JavaScript, which would produce false findings.
 - The version is pinned (`react-doctor` 0.9.18) because new versions add rules, which would change the score for reasons unrelated to your code.
 
 Lighthouse audits these pages, as set in `apps/web/lighthouserc.json`:
@@ -27,7 +32,7 @@ Lighthouse audits these pages, as set in `apps/web/lighthouserc.json`:
 - `/?tags=embeddings`: the home page with a filter applied
 - `/posts/261f40df-…`: a post detail page
 
-**Reading Lighthouse results.** `perf-reports/lighthouse/manifest.json` lists the 15 runs from the **latest** Lighthouse run. Each entry has the URL, the category scores and the paths to its report files. The entry with `"isRepresentativeRun": true` is the **median** run for that URL, so use that one. Open the matching `.report.html` in a browser for the full report; it's easier to read than the `.json`.
+**Reading Lighthouse results.** Each value in the report is the **median** of the 5 runs for that page, taken separately for each metric. The full Lighthouse HTML reports aren't kept. Lighthouse CI needs a scratch folder (`apps/web/.lighthouseci/`) while it runs, and it's deleted as soon as the report is written. To see the full visual report for a page, run Lighthouse from Chrome DevTools (the **Lighthouse** tab) against the production server.
 
 **Switching Lighthouse to mobile.** In `apps/web/lighthouserc.json`, delete the `"preset": "desktop"` line under `collect.settings`. Lighthouse's default is mobile emulation (a slower phone CPU and network). Mobile and desktop scores can't be compared with each other, so pick one and use it for both the before and after runs.
 
@@ -54,20 +59,15 @@ The production build turns off profiling. Use `pnpm dev:web`, or build with `nex
 
 ## Where to find results
 
-Everything is saved under **`apps/web/perf-reports/`**. Git ignores this folder, so it only exists on your machine.
+Every `perf:*` command saves one Markdown report in **`apps/web/perf-reports/`**: `<label>.md` if you gave a label, otherwise `perf-<timestamp>.md`. Git ignores this folder, so it only exists on your machine.
 
-| Tool | Location | What to open |
-| --- | --- | --- |
-| React Doctor | `react-doctor-<timestamp>.txt` and `react-doctor-<timestamp>/` | The `.txt` for the score and findings. `diagnostics.json` in the folder has every finding as data. |
-| Build size | `build-output-<timestamp>.txt` | The First Load JS table at the bottom. |
-| Bundle analyzer | `bundle-analysis-<timestamp>/` | `analyze.txt` and the other `.txt` files. For the visual explorer, run `pnpm perf:bundle` and open http://localhost:4000. |
-| Lighthouse | `lighthouse/` | `manifest.json` first, then the `.report.html` of the median run for each URL. |
-| Web Vitals | Not saved | The browser console (`[Web Vitals] …` lines). Copy the numbers down yourself. |
-| React Scan, React DevTools Profiler, Chrome Performance panel | Not saved | Shown live in the browser. Chrome and React DevTools can export a profile to a file if you want to keep one. |
+Each report starts with the date, the branch and commit that was measured (and whether there were uncommitted changes), and which tools ran. Then comes one section per tool. Open it in your editor's Markdown preview to see the tables.
 
-**Things to watch out for:**
-- **The `lighthouse/` folder keeps every run.** New reports are added next to old ones, and the file names don't say which page each report is for. Only `manifest.json` tells you, and it only covers the latest run. Clear or move the folder between measurements (see below).
-- **Lighthouse file names use UTC time**, so they can differ from your local clock. For example, `localhost--2026_10_20_15_38_43` is 16:38 in UTC+1. The other files use your local time.
+At the bottom of each report is a hidden `<!-- perf-data … -->` comment holding the raw numbers. `perf:compare` reads it, so don't edit or remove it.
+
+These aren't saved anywhere:
+- **Web Vitals:** the `[Web Vitals] …` lines in the browser console. Copy the numbers down yourself.
+- **React Scan, the React DevTools Profiler and the Chrome Performance panel:** shown live in the browser. Chrome and React DevTools can export a profile to a file if you want to keep one.
 
 ## Measuring the baseline
 
@@ -77,22 +77,26 @@ The git tag `perf-baseline` marks the original app code with this tooling alread
 git stash                  # only if you have uncommitted work
 git checkout perf-baseline
 pnpm install
-rm -rf apps/web/perf-reports   # start from an empty reports folder
-pnpm perf:all
-mkdir -p apps/web/perf-reports/baseline
-mv apps/web/perf-reports/{lighthouse,*-20*} apps/web/perf-reports/baseline/
-git checkout <your-branch> # e.g. slight-format-fix
+pnpm perf:all baseline     # writes apps/web/perf-reports/baseline.md
+git checkout <your-branch> # e.g. main
 pnpm install
 git stash pop              # only if you stashed
 ```
 
-`perf-reports/` is git-ignored, so the baseline folder stays put when you switch branches. After optimizing, run `pnpm perf:all` on your branch and move those results the same way, into `apps/web/perf-reports/after/` (or a name for each attempt, like `after-memo-fix/`). Then compare the files in `baseline/` with those in `after/`.
+`perf-reports/` is git-ignored, so `baseline.md` stays put when you switch branches. After optimizing, measure again with a new label and compare:
+
+```sh
+pnpm perf:all after-memo-fix              # a label for each attempt
+pnpm perf:compare baseline after-memo-fix
+```
+
+`perf:compare` prints every metric with its before value, after value and change. Times and sizes use the improvement % formula below, and scores and issue counts show the difference in points. Each line also says "better" or "worse". It accepts a label (`baseline`), a file name (`baseline.md`) or a path to a report.
 
 ## Rules for fair comparisons
 
 - **Production build only.** Dev-mode numbers are much slower and unreliable. All the `perf:*` scripts already use a production build.
 - **Same machine, same conditions.** Plug in your laptop, close other apps (especially browsers, IDE indexing and video calls), and don't use the machine while it measures.
-- **Use medians, not single runs.** Lighthouse runs each page 5 times for this reason. Compare the representative (median) runs.
+- **Use medians, not single runs.** Lighthouse runs each page 5 times for this reason, and the report already shows medians.
 - **Change one thing at a time** where you can, so you know which change caused the difference.
 - **Same Lighthouse preset** (desktop or mobile) for the before and after runs.
 - **Same React Doctor version** for the before and after runs. Don't upgrade `react-doctor` between them.
