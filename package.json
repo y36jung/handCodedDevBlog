@@ -9,6 +9,8 @@
     "build:api": "pnpm --filter api build",
     "start:api": "pnpm --filter api start",
     "lint:web": "pnpm --filter web lint",
+    "test:web": "pnpm --filter web test --run",
+    "test:e2e": "pnpm --filter web test:e2e",
     "perf:doctor": "pnpm --filter web perf:doctor",
     "perf:build-size": "pnpm --filter web perf:build-size",
     "perf:bundle": "pnpm --filter web perf:bundle",
