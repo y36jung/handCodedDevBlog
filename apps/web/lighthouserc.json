@@ -1,0 +1,22 @@
+{
+  "ci": {
+    "collect": {
+      "startServerCommand": "pnpm build && pnpm exec next start -p 3100",
+      "startServerReadyPattern": "Ready",
+      "startServerReadyTimeout": 240000,
+      "url": [
+        "http://localhost:3100/",
+        "http://localhost:3100/?tags=embeddings",
+        "http://localhost:3100/posts/261f40df-ef82-41a3-a28c-f7b1491e99f5"
+      ],
+      "numberOfRuns": 5,
+      "settings": {
+        "preset": "desktop"
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "./perf-reports/lighthouse"
+    }
+  }
+}

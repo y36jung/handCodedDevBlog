@@ -6,7 +6,13 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "perf:doctor": "node scripts/save-react-doctor.mjs",
+    "perf:build-size": "node scripts/save-build-output.mjs",
+    "perf:bundle": "next experimental-analyze",
+    "perf:bundle:save": "next experimental-analyze -o && node scripts/save-bundle-analysis.mjs",
+    "perf:lighthouse": "lhci autorun",
+    "perf:all": "pnpm perf:doctor && pnpm perf:build-size && pnpm perf:bundle:save && pnpm perf:lighthouse"
   },
   "dependencies": {
     "@mantine/core": "^9.7.3",
@@ -18,6 +24,7 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@lhci/cli": "^0.15.1",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -27,6 +34,8 @@
     "postcss": "^8.5.31",
     "postcss-preset-mantine": "^1.18.0",
     "postcss-simple-vars": "^7.0.1",
+    "react-doctor": "0.9.18",
+    "react-scan": "^0.5.7",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
