@@ -16,6 +16,7 @@
     "perf:bundle": "pnpm --filter web perf:bundle",
     "perf:bundle:save": "pnpm --filter web perf:bundle:save",
     "perf:lighthouse": "pnpm --filter web perf:lighthouse",
-    "perf:all": "pnpm --filter web perf:all"
+    "perf:all": "pnpm --filter web perf:all",
+    "perf:compare": "pnpm --filter web perf:compare"
   }
 }

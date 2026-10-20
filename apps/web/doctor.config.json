@@ -1,7 +1,16 @@
 {
   "$schema": "https://react.doctor/schema/config.json",
-  // Perf tooling: keep build output and saved reports (which contain built JS chunks) out of the scan
+  // Perf tooling: only score shipped app code. Build output (built JS chunks), perf tooling scripts and tests are excluded.
   "ignore": {
-    "files": ["perf-reports/**", ".next/**", ".lighthouseci/**"]
+    "files": [
+      "perf-reports/**",
+      ".next/**",
+      ".lighthouseci/**",
+      "scripts/**",
+      "e2e/**",
+      "test/**",
+      "test-results/**",
+      "**/*.test.*"
+    ]
   }
 }
