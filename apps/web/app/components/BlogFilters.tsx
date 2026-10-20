@@ -14,6 +14,7 @@ export default function BlogFilters() {
                     width: '95%',
                     flexDirection: 'column',
                     display: 'flex',
+                    gap: 10
                 }
             }
             className="blog-filters"
@@ -24,7 +25,7 @@ export default function BlogFilters() {
                 style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: 8,
+                    gap: 10,
                     height: '70%'
                 }}
             >

@@ -29,7 +29,7 @@ export default function RootLayout({
         margin: '2vh 2vw 2vh 2vw'
       }}>
         <MantineProvider defaultColorScheme="auto">
-          <DebugBorders enabled={true}>
+          <DebugBorders enabled={false}>
             {children}
           </DebugBorders>
         </MantineProvider>
